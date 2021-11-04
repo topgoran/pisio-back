@@ -47,4 +47,9 @@ public class UserGradeController {
     public UserGradeDTO insert(@RequestBody UserGradeRequest userGradeRequest) throws NotFoundException {
         return userGradeService.insert(userGradeRequest);
     }
+
+    @PutMapping("/{id}")
+    public UserGradeDTO update(@PathVariable("id") UUID id, @RequestBody UserGradeRequest userGradeRequest) throws NotFoundException {
+        return userGradeService.update(id, userGradeRequest);
+    }
 }

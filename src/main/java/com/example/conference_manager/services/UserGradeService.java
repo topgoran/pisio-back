@@ -12,5 +12,5 @@ public interface UserGradeService {
     UserGradeDTO findById(UUID id) throws NotFoundException;
     UserGradeDTO insert(UserGradeRequest userGradeRequest) throws NotFoundException;
     UserGradeDTO findByUserAndSubject(UUID userId, UUID subjectId);
-
+    UserGradeDTO update(UUID id, UserGradeRequest userGradeRequest) throws NotFoundException;
 }

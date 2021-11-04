@@ -55,4 +55,13 @@ public class UserGradeServiceImpl implements UserGradeService {
     public UserGradeDTO findByUserAndSubject(UUID userId, UUID subjectId) {
         return modelMapper.map(userGradeRepository.findByUserUserIdAndGradingSubjectGradingSubjectId(userId, subjectId), UserGradeDTO.class);
     }
+
+    @Override
+    public UserGradeDTO update(UUID id, UserGradeRequest userGradeRequest) throws NotFoundException {
+        GradingSubjectHasUserEntity gradingSubjectHasUserEntity = modelMapper.map(userGradeRequest, GradingSubjectHasUserEntity.class);
+        gradingSubjectHasUserEntity.setGradeId(id);
+        gradingSubjectHasUserEntity = userGradeRepository.saveAndFlush(gradingSubjectHasUserEntity);
+        entityManager.refresh(gradingSubjectHasUserEntity);
+        return findById(gradingSubjectHasUserEntity.getGradeId());
+    }
 }

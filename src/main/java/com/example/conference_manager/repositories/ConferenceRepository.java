@@ -19,6 +19,6 @@ public interface ConferenceRepository extends JpaRepository<ConferenceEntity, UU
     @Query("SELECT distinct c FROM ConferenceEntity c inner join SessionEntity s on c.conferenceId = s.conference.conferenceId inner join EventEntity e on s.sessionId = e.session.sessionId where e.eventId in ?1")
     List<ConferenceEntity> findByEventIds(List<UUID> eventId);
 
-    @Query("select c from ConferenceEntity c where c.dateTo > CURRENT_TIMESTAMP ")
+    @Query("select c from ConferenceEntity c where c.dateTo > CURRENT_TIMESTAMP order by c.dateFrom asc ")
     List<ConferenceEntity> findNew();
 }
