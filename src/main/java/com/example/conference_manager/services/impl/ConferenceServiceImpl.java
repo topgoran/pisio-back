@@ -1,6 +1,7 @@
 package com.example.conference_manager.services.impl;
 
 import com.example.conference_manager.exceptions.NotFoundException;
+import com.example.conference_manager.models.dto.AverageRatingDTO;
 import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.EventIdsDTO;
 import com.example.conference_manager.models.dto.SessionDTO;
@@ -95,5 +96,10 @@ public class ConferenceServiceImpl implements ConferenceService {
     @Override
     public List<ConferenceDTO> findByEventId(EventIdsDTO ids) {
         return conferenceRepository.findByEventIds(ids.getEventIds()).stream().map(c -> modelMapper.map(c, ConferenceDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AverageRatingDTO> findAverageRatingsForConference(UUID conferenceId) {
+        return conferenceRepository.findAverageRatings(conferenceId);
     }
 }

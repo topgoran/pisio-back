@@ -1,5 +1,6 @@
 package com.example.conference_manager.repositories;
 
+import com.example.conference_manager.models.dto.AverageRatingDTO;
 import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.EventIdsDTO;
 import com.example.conference_manager.models.entities.ConferenceEntity;
@@ -21,4 +22,7 @@ public interface ConferenceRepository extends JpaRepository<ConferenceEntity, UU
 
     @Query("select c from ConferenceEntity c where c.dateTo > CURRENT_TIMESTAMP order by c.dateFrom asc ")
     List<ConferenceEntity> findNew();
+
+    @Query("select new com.example.conference_manager.models.dto.AverageRatingDTO(gs.name, avg(gshu.grade)) from ConferenceEntity c inner join GradingSubjectEntity gs on c.conferenceId = gs.conference.conferenceId inner join GradingSubjectHasUserEntity gshu on gs.gradingSubjectId = gshu.gradingSubject.gradingSubjectId where c.conferenceId = ?1 group by gs.gradingSubjectId")
+    List<AverageRatingDTO> findAverageRatings(UUID conferenceId);
 }

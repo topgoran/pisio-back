@@ -1,6 +1,7 @@
 package com.example.conference_manager.controllers;
 
 import com.example.conference_manager.exceptions.NotFoundException;
+import com.example.conference_manager.models.dto.AverageRatingDTO;
 import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.EventIdsDTO;
 import com.example.conference_manager.models.dto.SessionDTO;
@@ -51,6 +52,11 @@ public class ConferenceController {
     @GetMapping("/bysession/{id}")
     public UUID findBySession(@PathVariable("id") UUID id){
         return conferenceService.findIdBySession(id);
+    }
+
+    @GetMapping("/avg/{id}")
+    public List<AverageRatingDTO> findAvgRatingsForConference(@PathVariable("id") UUID id){
+        return conferenceService.findAverageRatingsForConference(id);
     }
 
     @PostMapping("/byeventids")

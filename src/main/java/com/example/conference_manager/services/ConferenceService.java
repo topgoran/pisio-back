@@ -1,6 +1,7 @@
 package com.example.conference_manager.services;
 
 import com.example.conference_manager.exceptions.NotFoundException;
+import com.example.conference_manager.models.dto.AverageRatingDTO;
 import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.EventIdsDTO;
 import com.example.conference_manager.models.dto.SessionDTO;
@@ -21,4 +22,5 @@ public interface ConferenceService {
     ConferenceDTO update(UUID id, ConferenceRequest conferenceRequest) throws NotFoundException;
     UUID findIdBySession(UUID id);
     List<ConferenceDTO> findByEventId(EventIdsDTO ids);
+    List<AverageRatingDTO> findAverageRatingsForConference(UUID conferenceId);
 }
