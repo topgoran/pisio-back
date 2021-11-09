@@ -1,9 +1,7 @@
 package com.example.conference_manager.controllers;
 
 import com.example.conference_manager.exceptions.NotFoundException;
-import com.example.conference_manager.models.dto.EventByVenueAndDateDTO;
-import com.example.conference_manager.models.dto.EventCollisionCheckDTO;
-import com.example.conference_manager.models.dto.EventDTO;
+import com.example.conference_manager.models.dto.*;
 import com.example.conference_manager.models.request.EventRequest;
 import com.example.conference_manager.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +35,11 @@ public class EventController {
     @GetMapping("/{id}")
     public EventDTO findById(@PathVariable("id")UUID id) throws NotFoundException {
         return eventService.findById(id);
+    }
+
+    @GetMapping("/resources/{id}")
+    public List<ResourceWithNumberDTO> findResourcesForEvent(@PathVariable("id") UUID id){
+        return eventService.findResourcesByEvent(id);
     }
 
     @PostMapping

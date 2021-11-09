@@ -1,10 +1,7 @@
 package com.example.conference_manager.services;
 
 import com.example.conference_manager.exceptions.NotFoundException;
-import com.example.conference_manager.models.dto.AverageRatingDTO;
-import com.example.conference_manager.models.dto.ConferenceDTO;
-import com.example.conference_manager.models.dto.EventIdsDTO;
-import com.example.conference_manager.models.dto.SessionDTO;
+import com.example.conference_manager.models.dto.*;
 import com.example.conference_manager.models.request.ConferenceRequest;
 import org.springframework.stereotype.Service;
 
@@ -23,4 +20,5 @@ public interface ConferenceService {
     UUID findIdBySession(UUID id);
     List<ConferenceDTO> findByEventId(EventIdsDTO ids);
     List<AverageRatingDTO> findAverageRatingsForConference(UUID conferenceId);
+    List<GradingSubjectDTO> findGradingSubjectsForConference(UUID conferenceId);
 }

@@ -13,5 +13,4 @@ public class ResourceDTO {
     private UUID resourceId;
     private String resourceType;
     private String resourceName;
-    //private List<EventHasResourceDTO> eventHasResources;
 }

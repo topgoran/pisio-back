@@ -3,6 +3,8 @@ package com.example.conference_manager.services.impl;
 import com.example.conference_manager.exceptions.NotFoundException;
 import com.example.conference_manager.models.dto.EventCollisionCheckDTO;
 import com.example.conference_manager.models.dto.EventDTO;
+import com.example.conference_manager.models.dto.ResourceDTO;
+import com.example.conference_manager.models.dto.ResourceWithNumberDTO;
 import com.example.conference_manager.models.entities.EventEntity;
 import com.example.conference_manager.models.request.EventRequest;
 import com.example.conference_manager.repositories.EventRepository;
@@ -76,5 +78,10 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<EventDTO> getByVenueAndDate(UUID venueId, Timestamp date) {
         return eventRepository.findEventsByVenueAndDate(venueId, date).stream().map(e -> modelMapper.map(e, EventDTO.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ResourceWithNumberDTO> findResourcesByEvent(UUID id) {
+        return eventRepository.findResourcesForEntity(id);
     }
 }

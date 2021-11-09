@@ -1,10 +1,7 @@
 package com.example.conference_manager.controllers;
 
 import com.example.conference_manager.exceptions.NotFoundException;
-import com.example.conference_manager.models.dto.AverageRatingDTO;
-import com.example.conference_manager.models.dto.ConferenceDTO;
-import com.example.conference_manager.models.dto.EventIdsDTO;
-import com.example.conference_manager.models.dto.SessionDTO;
+import com.example.conference_manager.models.dto.*;
 import com.example.conference_manager.models.request.ConferenceRequest;
 import com.example.conference_manager.services.ConferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +54,11 @@ public class ConferenceController {
     @GetMapping("/avg/{id}")
     public List<AverageRatingDTO> findAvgRatingsForConference(@PathVariable("id") UUID id){
         return conferenceService.findAverageRatingsForConference(id);
+    }
+
+    @GetMapping("/gradingsubjects/{id}")
+    public List<GradingSubjectDTO> findGradingSubjectsByConferenceId(@PathVariable("id") UUID id){
+        return conferenceService.findGradingSubjectsForConference(id);
     }
 
     @PostMapping("/byeventids")
