@@ -1,6 +1,7 @@
 package com.example.conference_manager.services;
 
 import com.example.conference_manager.exceptions.NotFoundException;
+import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.SessionDTO;
 import com.example.conference_manager.models.request.SessionRequest;
 
@@ -15,4 +16,5 @@ public interface SessionService {
     List<SessionDTO> findAllOrdered();
     SessionDTO update(UUID id, SessionRequest sessionRequest) throws NotFoundException;
     UUID findByEvent(UUID id);
+    ConferenceDTO findConference(UUID id);
 }

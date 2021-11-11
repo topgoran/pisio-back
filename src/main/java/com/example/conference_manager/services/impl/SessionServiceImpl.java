@@ -1,6 +1,7 @@
 package com.example.conference_manager.services.impl;
 
 import com.example.conference_manager.exceptions.NotFoundException;
+import com.example.conference_manager.models.dto.ConferenceDTO;
 import com.example.conference_manager.models.dto.SessionDTO;
 import com.example.conference_manager.models.entities.SessionEntity;
 import com.example.conference_manager.models.request.SessionRequest;
@@ -74,5 +75,10 @@ public class SessionServiceImpl implements SessionService {
     @Override
     public UUID findByEvent(UUID id) {
         return sessionRepository.findByEvent(id);
+    }
+
+    @Override
+    public ConferenceDTO findConference(UUID id) {
+        return modelMapper.map(sessionRepository.findConference(id), ConferenceDTO.class);
     }
 }

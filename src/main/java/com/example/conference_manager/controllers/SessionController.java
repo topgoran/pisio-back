@@ -43,6 +43,11 @@ public class SessionController {
         return sessionService.findByEvent(id);
     }
 
+    @GetMapping("findconference/{id}")
+    public ConferenceDTO findConference(@PathVariable("id") UUID id){
+        return sessionService.findConference(id);
+    }
+
     @PostMapping
     public SessionDTO insert(@RequestBody SessionRequest sessionRequest) throws NotFoundException {
         return sessionService.insert(sessionRequest);

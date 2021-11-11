@@ -1,6 +1,7 @@
 package com.example.conference_manager.repositories;
 
 import com.example.conference_manager.models.dto.ConferenceDTO;
+import com.example.conference_manager.models.entities.ConferenceEntity;
 import com.example.conference_manager.models.entities.SessionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,4 +16,7 @@ public interface SessionRepository extends JpaRepository<SessionEntity, UUID> {
 
     @Query("SELECT s.sessionId FROM SessionEntity s inner join EventEntity e on s.sessionId = e.session.sessionId where e.eventId = ?1")
     UUID findByEvent(UUID id);
+
+    @Query("select c from SessionEntity s inner join ConferenceEntity c on s.conference.conferenceId = c.conferenceId where s.sessionId = ?1")
+    ConferenceEntity findConference(UUID id);
 }
