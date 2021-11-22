@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO findByUsernameAndPassword(UserLogin userLogin) {
+        String temp = HashClass.hashPassword(userLogin.getPassword());
         return modelMapper.map(userEntityRepository.findUserEntityByUsernameAndPassword(userLogin.getUsername(), HashClass.hashPassword(userLogin.getPassword())), UserDTO.class);
     }
 
